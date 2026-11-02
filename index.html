@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varun Jogi | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4c1d95;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6d28d9;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8b5cf6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #8b5cf6;
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem 2rem 2rem;
+            background: radial-gradient(circle at center, #1e1b4b 0%, #000000 70%);
+        }
+
+        /* Profile Uploader Ring */
+        .profile-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 240px;
+            height: 240px;
+            border: 3px dashed #7c3aed;
+            border-radius: 50%;
+            animation: rotateRing 20s linear infinite;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+        }
+
+        @keyframes rotateRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-avatar-wrapper {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #000000;
+            background: #111827;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .upload-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #a78bfa;
+            font-size: 0.85rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .upload-placeholder svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.5rem;
+            fill: currentcolor;
+        }
+
+        .welcome-text {
+            color: #9ca3af;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-p {
+            max-width: 600px;
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #7c3aed;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.7);
+        }
+
+        .btn-secondary {
+            border: 2px solid #7c3aed;
+            color: #7c3aed;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(124, 58, 237, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Global Sections Layout */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #8b5cf6;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50%;
+            height: 4px;
+            background: #7c3aed;
+            border-radius: 2px;
+        }
+
+        /* About & Education Card */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-text p {
+            color: #9ca3af;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .education-card {
+            background: #090514;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .education-card h3 {
+            color: #8b5cf6;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .institute {
+            color: #ffffff;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: #090514;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .skill-card h3 {
+            color: #8b5cf6;
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Projects Section without Buttons */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: #090514;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 16px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.2);
+        }
+
+        .project-meta h4 {
+            color: #9ca3af;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta h3 {
+            color: #8b5cf6;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-meta p {
+            color: #9ca3af;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(139, 92, 246, 0.1);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact Details Layout */
+        .contact-container {
+            background: #090514;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-p {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-info-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        .contact-info-list a {
+            color: #8b5cf6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info-list a:hover {
+            color: #a78bfa;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            color: #6b7280;
+            border-top: 1px solid rgba(124, 58, 237, 0.1);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav Bar Links mapping seamlessly to blocks -->
+    <nav>
+        <div class="logo">VJ</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Frame Context -->
+    <header id="home">
+        <div class="profile-container" onclick="document.getElementById('avatarPicker').click();" title="Click to upload profile photo">
+            <div class="avatar-ring"></div>
+            <div class="profile-avatar-wrapper">
+                <img id="displayAvatar" src="" alt="Varun Jogi Profile Picture">
+                <div id="uploadPlaceholder" class="upload-placeholder">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3Z"/>
+                    </svg>
+                    <span>Tap to upload your picture</span>
+                </div>
+            </div>
+            <input type="file" id="avatarPicker" accept="image/*" style="display:none;" onchange="loadLocalImage(this);">
+        </div>
+
+        <p class="welcome-text">Hello, I'm</p>
+        <h1>Varun Jogi</h1>
+        <h2>MCA Student | Aspiring Software Developer</h2>
+        <p class="intro-p">
+            I am currently pursuing my Master of Computer Applications (MCA) at Poornaprajna Institute of Management. I am passionate about web development, programming, and creating practical, high-performance software solutions.
+        </p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">View My Projects</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+    </header>
+
+    <!-- About Module Profile Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>
+                    I am Varun Jogi, a dedicated Master of Computer Applications (MCA) student deeply focused on leveraging modern web frameworks and engineering data architectures.
+                </p>
+                <p>
+                    I am highly interested in web development, object-oriented programming, and building clean, reliable database backends. I enjoy discovering new technology frameworks, scaling my programming proficiency, and refining structural software algorithms to solve practical, real-world constraints.
+                </p>
+            </div>
+            <div class="education-card">
+                <h3>Education</h3>
+                <p class="institute">Poornaprajna Institute of Management</p>
+                <p style="color: #9ca3af; font-size: 0.95rem;">Master of Computer Applications (MCA)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Tech Stack Skill Profiles Grid -->
+    <section id="skills">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>HTML</h3>
+                <p>Creating structured, semantic, and highly accessible web page foundations.</p>
+            </div>
+            <div class="skill-card">
+                <h3>CSS</h3>
+                <p>Designing completely responsive, fluid, and visually stunning interactive website layouts.</p>
+            </div>
+            <div class="skill-card">
+                <h3>JavaScript</h3>
+                <p>Adding rich user interactivity, custom web animations, and dynamic state features to modern sites.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Python</h3>
+                <p>Developing clean data models, programmatic server automation, and flexible problem-solving algorithms.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exact 2 Project Slot Layout (Buttons Completely Extracted) -->
+    <section id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-meta">
+                    <h4>Project 01</h4>
+                    <h3>Hospital Management System</h3>
+                    <p>A full-cycle platform engineered to optimize healthcare workflows, organize safe digital electronic health records, coordinate physician shift calendars, and manage operational appointment booking parameters.</p>
+                </div>
+                <div class="tech-badges">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-meta">
+                    <h4>Project 02</h4>
+                    <h3>Food Truck Management System</h3>
+                    <p>An interactive, responsive application built to streamline mobile point-of-sale activities, automate rolling stock inventory constraints, trace dynamic geographic locations, and manage client checkout workflows securely.</p>
+                </div>
+                <div class="tech-badges">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Custom Targeted Contact Interface Block -->
+    <section id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-container">
+            <p class="contact-p">Interested in learning more about my education, skills, and projects? Get in touch directly via my official networks.</p>
+            <ul class="contact-info-list">
+                <li><strong>Email:</strong> <a href="mailto:varunkumarjogi797@gmail.com">varunkumarjogi797@gmail.com</a></li>
+                <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/varunjogi" target="_blank">Visit My LinkedIn</a></li>
+            </ul>
+            <a href="mailto:varunkumarjogi797@gmail.com" class="btn btn-primary">Send Me an Email</a>
+        </div>
+    </section>
+
+    <!-- Footer Copyright Marker -->
+    <footer>
+        &copy; 2026 Varun Jogi | Personal Portfolio
+    </footer>
+
+    <!-- Client-Side Sandbox Bypassing Image Loader Engine Core Logic -->
+    <script>
+        function loadLocalImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('displayAvatar');
+                    const placeholder = document.getElementById('uploadPlaceholder');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    placeholder.style.display = 'none';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
